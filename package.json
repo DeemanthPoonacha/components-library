@@ -1,5 +1,6 @@
 {
   "name": "components-library",
+  "author": "Deemanth Poonacha",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.88.13",
+    "@react-three/fiber": "^8.15.10",
+    "@tweenjs/tween.js": "^21.0.0",
     "react": "^18",
     "react-dom": "^18",
     "next": "14.0.3"

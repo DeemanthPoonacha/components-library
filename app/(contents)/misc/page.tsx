@@ -1,30 +1,12 @@
-"use client";
-import useArray from "@/lib/hooks/useArray";
+import ArrayUtils from "@/components/Misc/ArrayUtils";
 import React from "react";
 
-const Misc = () => {
-  const { array, filterArray, pushToArray, setArray, updateArray } = useArray([
-    1, 2, 3,
-  ]);
-  const newArray = [];
+const page = () => {
   return (
     <div>
-      Array utils
-      <div>{array}</div>
-      set array:{" "}
-      <input
-        type="text"
-        id="fname"
-        name="fname"
-        onChange={(e) => {
-          console.log(e.target.value);
-
-          newArray.push(e.target.value);
-        }}
-      />
-      <button onClick={() => setArray(newArray)}></button>
+      <ArrayUtils />
     </div>
   );
 };
 
-export default Misc;
+export default page;

@@ -21,7 +21,7 @@ const Scene: React.FC<SceneProps> = ({ loadData }) => {
   const defaultCamPos: Vector3 = [15, 15, 15];
   const [camPos, setCamPos] = useState<Vector3>(defaultCamPos);
   const zoomFactor =
-    ((loadData?.dimensions?.x + loadData?.dimensions?.y) / 2) * 7;
+    ((loadData?.dimensions?.x + loadData?.dimensions?.y) / 2) * 5;
   const [camZoom, setCamZoom] = useState<number>(zoomFactor);
   // const defaultCamRot: Euler = [0, 0, 0];
   // const defaultCamQuot: Quaternion = new Quaternion(0, 0, 0);
@@ -44,7 +44,11 @@ const Scene: React.FC<SceneProps> = ({ loadData }) => {
         {...{ handleReset, setLockView, lockView, isOrtho, setIsOrtho }}
       />
 
-      <Canvas camera={{ position: camPos, fov: 55 }} style={{ height: "90vh" }}>
+      <Canvas
+        className="bg-slate-300/50 !h-[75vh]"
+        camera={{ position: camPos, fov: 55 }}
+        // style={{ height: "70vh", margin: "auto" }}
+      >
         <Suspense fallback={<div>Loading...</div>}>
           {loadData && (
             <Container
@@ -66,7 +70,7 @@ const Scene: React.FC<SceneProps> = ({ loadData }) => {
           enabled={!lockView}
           enablePan={false}
           minDistance={10}
-          maxDistance={zoomFactor / 3}
+          maxDistance={zoomFactor / 2}
           maxPolarAngle={Math.PI / 2}
         />
         {isOrtho ? (

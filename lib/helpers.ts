@@ -2,10 +2,11 @@ import { Adjacent8, Cell, Dimensions, BoxProps } from "@/lib/schemas";
 import { shipmentColors } from "./constants";
 
 export const isLCenter = (adjArr: Adjacent8) =>
-  (adjArr[0] && adjArr[2] && !adjArr[1]) ||
-  (adjArr[2] && adjArr[4] && !adjArr[3]) ||
-  (adjArr[4] && adjArr[6] && !adjArr[5]) ||
-  (adjArr[6] && adjArr[0] && !adjArr[7]);
+  adjArr &&
+  ((adjArr[0] && adjArr[2] && !adjArr[1]) ||
+    (adjArr[2] && adjArr[4] && !adjArr[3]) ||
+    (adjArr[4] && adjArr[6] && !adjArr[5]) ||
+    (adjArr[6] && adjArr[0] && !adjArr[7]));
 
 export const computeAdjacencyArray = (
   otherCell: Cell,

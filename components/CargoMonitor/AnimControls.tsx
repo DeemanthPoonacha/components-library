@@ -1,5 +1,11 @@
 "use client";
-import { Button, Slider, Stack, Typography } from "@mui/material";
+import {
+  ArrowLeft,
+  ArrowRight,
+  FastForward,
+  FastRewind,
+} from "@mui/icons-material";
+import { Button, Divider, Slider, Stack, Typography } from "@mui/material";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 interface AnimControlProps {
@@ -14,8 +20,6 @@ const AnimControls = ({ step, setStep, maxStep }: AnimControlProps) => {
   const [speed, setSpeed] = useState(1);
 
   useEffect(() => {
-    console.log(animState);
-
     let intervalId;
     if (animState) {
       let i = 0;
@@ -41,34 +45,17 @@ const AnimControls = ({ step, setStep, maxStep }: AnimControlProps) => {
   return (
     <Stack
       direction={"row"}
-      spacing={4}
+      spacing={2}
       alignItems={"center"}
       className="bg-slate-500/50 p-2"
     >
-      <Typography>Animation Control:</Typography>
-      <Button
-        variant="contained"
-        disableElevation
-        // className="disabled:cursor-not-allowed disabled:text-slate-500"
-        disabled={(!animState && step === 0) || animState !== null}
-        onClick={decrementStep}
-      >
-        {"< Previous"}
-      </Button>
-      <Button
-        variant="contained"
-        disableElevation
-        // className="disabled:cursor-not-allowed disabled:text-slate-500"
-        disabled={(!animState && step === maxStep) || animState !== null}
-        onClick={incrementStep}
-      >
-        {"Next >"}
-      </Button>
-      <Stack gap={2} direction={"row"} alignItems={"center"}>
-        <Typography>Speed:</Typography>
+      <Typography>{"Animation Control"}</Typography>
+      <Divider orientation="vertical" flexItem />
+      <Stack>
+        <Typography>Speed</Typography>
         <Slider
           aria-label="Speed"
-          className="w-40"
+          className="lg:w-40 md:w-20 sm:w-12 w-10"
           valueLabelDisplay="auto"
           value={speed}
           onChange={(event, value: number) => setSpeed(value)}
@@ -84,23 +71,45 @@ const AnimControls = ({ step, setStep, maxStep }: AnimControlProps) => {
         variant="contained"
         disableElevation
         // className="disabled:cursor-not-allowed disabled:text-slate-500"
-        disabled={(!animState && step === maxStep) || animState !== null}
+        disabled={(!animState && step === 0) || animState !== null}
         onClick={() => {
-          setAnimState("forward");
+          setAnimState("backward");
         }}
+        startIcon={<FastRewind />}
       >
-        {"Load Cargo"}
-      </Button>
+        {"Unload Cargo"}
+      </Button>{" "}
       <Button
         variant="contained"
         disableElevation
         // className="disabled:cursor-not-allowed disabled:text-slate-500"
         disabled={(!animState && step === 0) || animState !== null}
-        onClick={() => {
-          setAnimState("backward");
-        }}
+        onClick={decrementStep}
+        startIcon={<ArrowLeft />}
       >
-        {"Unload Cargo"}
+        {"Previous"}
+      </Button>
+      <Button
+        variant="contained"
+        disableElevation
+        // className="disabled:cursor-not-allowed disabled:text-slate-500"
+        disabled={(!animState && step === maxStep) || animState !== null}
+        onClick={incrementStep}
+        endIcon={<ArrowRight />}
+      >
+        {"Next"}
+      </Button>
+      <Button
+        variant="contained"
+        disableElevation
+        // className="disabled:cursor-not-allowed disabled:text-slate-500"
+        disabled={(!animState && step === maxStep) || animState !== null}
+        onClick={() => {
+          setAnimState("forward");
+        }}
+        endIcon={<FastForward />}
+      >
+        {"Load Cargo"}
       </Button>
     </Stack>
   );

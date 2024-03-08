@@ -19,5 +19,6 @@ const config: Config = {
   corePlugins: {
     preflight: false,
   },
+  darkMode: "class",
 };
 export default config;

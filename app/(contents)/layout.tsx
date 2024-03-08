@@ -6,12 +6,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function ContentLayout({
   children,
+  title,
 }: {
   children: React.ReactNode;
+  title?: string;
 }) {
   return (
     <>
-      <h2>title</h2>
+      <h2>{title}</h2>
       {children}
     </>
   );

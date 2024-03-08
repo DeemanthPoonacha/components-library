@@ -9,7 +9,7 @@ const Header = () => {
       direction={"row"}
       justifyContent={"space-between"}
       alignContent={"center"}
-      className="bg-blue-600/40 "
+      className="bg-blue-600/40 w-full"
     >
       <Link href="/">
         <Image

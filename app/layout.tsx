@@ -23,9 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <main className="flex flex-col min-h-screen w-full ">
+          <main className="flex flex-col min-h-screen items-center">
             <Header />
-            <div className="w-full flex flex-col align-middle justify-center items-stretch p-1 sm:px-8 md:px-12 lg:px-24 xl:px-48 mb-auto dark:border-gray-800 light:border-gray-100 border-2">
+            <div className="max-w-7xl w-full flex flex-col align-middle justify-center items-stretch mb-auto dark:border-gray-800 light:border-gray-100 border-2">
               {children}
             </div>
             <div className="">footer</div>

@@ -31,7 +31,7 @@ const CargoMonitor = () => {
             cells.forEach((otherCell: Cell) => {
               computeAdjacencyArray(otherCell, cell, adjArr);
             });
-            cell.adjArr = adjArr as Adjacent8;
+            cell.adjArr = adjArr;
             cell.height = packageHeight;
           });
         })

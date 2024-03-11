@@ -1,7 +1,8 @@
 import { Vector3 } from "@react-three/fiber";
-import React, { useState } from "react";
+import { useState } from "react";
+import { ViewControls } from "../contexts/viewControlsContext";
 
-const useViewControls = ({ zoomFactor }) => {
+const useViewControls = ({ zoomFactor }): ViewControls => {
   const [isOrtho, setIsOrtho] = useState(true);
   const [lockView, setLockView] = useState(false);
   const defaultCamPos: Vector3 = [15, 15, 15];
@@ -12,6 +13,7 @@ const useViewControls = ({ zoomFactor }) => {
   // const [camRot, setCamRot] = useState<Euler>(defaultCamRot);
   // const [camQuot, setCamQuot] = useState<Quaternion>(defaultCamQuot);
   // const [camProps, setCamProps] = useState({});
+  const [selectedCamera, setSelectedCamera] = useState(1);
 
   const handleReset = () => {
     setCamPos(defaultCamPos);
@@ -20,6 +22,11 @@ const useViewControls = ({ zoomFactor }) => {
     setLockView(false);
     // fetchLoadingLevels();
     // setCamRot(defaultCamRot);
+  };
+  const handleCamButtonClick = (pos: Vector3, isOrtho: boolean) => {
+    handleReset();
+    setIsOrtho(isOrtho);
+    setCamPos(pos);
   };
 
   return {
@@ -31,6 +38,9 @@ const useViewControls = ({ zoomFactor }) => {
     setCamPos,
     setIsOrtho,
     setLockView,
+    handleCamButtonClick,
+    selectedCamera,
+    setSelectedCamera,
   };
 };
 

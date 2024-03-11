@@ -22,3 +22,23 @@ export const shipmentColors = [
   "#FA9884",
   "#E74646",
 ];
+
+export const WEBSOCKET_URL =
+  process.env.NEXT_PUBLIC_WEBSOCKET_URL || "ws://localhost:8000/ws";
+
+export const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
+
+export const CHANGE_CAMERA_API_URL = "/camera/change";
+export const TRANSFORM_CONTOUR_API_URL = "/contour/transform";
+export const CONTOURS_API_URL = "/contours";
+export const START_API_URL = "/start";
+export const STOP_API_URL = "/stop";
+
+export enum Colors {
+  RED = "#ff0000",
+  GREEN = "#00b050",
+  BLUE = "#1976d2",
+  WHITE = "#fff",
+  GRAY = "#808080",
+  LIGHT_GRAY = "#d3d3d3",
+}

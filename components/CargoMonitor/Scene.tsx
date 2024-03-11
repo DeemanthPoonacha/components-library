@@ -20,13 +20,17 @@ const Scene: React.FC<SceneProps> = ({ loadData, zoomFactor }) => {
   const controls = useViewControlsContext();
   if (!controls) return <></>;
 
-  const { camPos, camZoom, isOrtho, lockView, setCamPos } = controls;
+  const { camPos, camZoom, isOrtho, lockView, setCamPos, setSelectedCamera } =
+    controls;
   return (
     <>
       <Canvas
         className="bg-slate-300/50 !h-[75vh]"
         camera={{ position: camPos, fov: 55 }}
         // style={{ height: "70vh", margin: "auto" }}
+        onMouseDown={() => {
+          setSelectedCamera(0);
+        }}
       >
         <Suspense fallback={<div>Loading...</div>}>
           {loadData && (
@@ -39,6 +43,7 @@ const Scene: React.FC<SceneProps> = ({ loadData, zoomFactor }) => {
         <OrbitControls
           onChange={(e) => {
             const { position } = e.target.object;
+            console.log(position);
             isOrtho &&
               // setCamZoom(zoom > 60 ? 60 : zoom < 30 ? 30 : zoom);
               setCamPos(position);

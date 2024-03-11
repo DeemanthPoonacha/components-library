@@ -1,5 +1,5 @@
 import { Adjacent8, LoadingLevel } from "@/lib/schemas";
-import React, { memo, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Grid from "./Grid";
 import {
   computeAdjacencyArray,

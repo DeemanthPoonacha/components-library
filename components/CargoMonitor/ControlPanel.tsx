@@ -8,22 +8,16 @@ import {
 import React from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { Lock, LockOpen } from "@mui/icons-material";
+import { useViewControlsContext } from "@/lib/contexts/viewControlsContext";
 
-export interface ControlPanelProps {
-  handleReset: () => void;
-  lockView: boolean;
-  setLockView;
-  isOrtho: boolean;
-  setIsOrtho;
-}
+export interface ControlPanelProps {}
 
-export const ControlPanel: React.FC<ControlPanelProps> = ({
-  handleReset,
-  lockView,
-  setLockView,
-  isOrtho,
-  setIsOrtho,
-}) => {
+export const ControlPanel: React.FC<ControlPanelProps> = ({}) => {
+  const controls = useViewControlsContext();
+  if (!controls) return <></>;
+
+  const { handleReset, isOrtho, lockView, setIsOrtho, setLockView } = controls;
+
   return (
     <FormGroup>
       <div className="p-2 flex gap-2 items-center justify-between bg-slate-500/50">

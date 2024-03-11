@@ -28,7 +28,7 @@ export default function RootLayout({
             <div className="max-w-7xl w-full flex flex-col align-middle justify-center items-stretch mb-auto dark:border-gray-800 light:border-gray-100 border-2">
               {children}
             </div>
-            <div className="">footer</div>
+            <div className="w-full">footer</div>
           </main>
         </Providers>
       </body>

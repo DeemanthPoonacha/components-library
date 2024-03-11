@@ -1,5 +1,5 @@
-import { Canvas, Vector3 } from "@react-three/fiber";
-import React, { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
 import {
   OrbitControls,
   OrthographicCamera,
@@ -8,42 +8,21 @@ import {
 import Container from "./Container";
 import { LoadingLevel } from "@/lib/schemas";
 import config from "@/config.json";
-import ControlPanel from "./ControlPanel";
+import { useViewControlsContext } from "@/lib/contexts/viewControlsContext";
 
 interface SceneProps {
   loadData: LoadingLevel;
+  zoomFactor: number;
 }
-const Scene: React.FC<SceneProps> = ({ loadData }) => {
+const Scene: React.FC<SceneProps> = ({ loadData, zoomFactor }) => {
   const PADDING_BETWEEN_PACKAGES = config.PADDING_BETWEEN_PACKAGES;
 
-  const [isOrtho, setIsOrtho] = useState(true);
-  const [lockView, setLockView] = useState(false);
-  const defaultCamPos: Vector3 = [15, 15, 15];
-  const [camPos, setCamPos] = useState<Vector3>(defaultCamPos);
-  const zoomFactor =
-    ((loadData?.dimensions?.x + loadData?.dimensions?.y) / 2) * 5;
-  const [camZoom, setCamZoom] = useState<number>(zoomFactor);
-  // const defaultCamRot: Euler = [0, 0, 0];
-  // const defaultCamQuot: Quaternion = new Quaternion(0, 0, 0);
-  // const [camRot, setCamRot] = useState<Euler>(defaultCamRot);
-  // const [camQuot, setCamQuot] = useState<Quaternion>(defaultCamQuot);
-  // const [camProps, setCamProps] = useState({});
+  const controls = useViewControlsContext();
+  if (!controls) return <></>;
 
-  const handleReset = () => {
-    setCamPos(defaultCamPos);
-    setCamZoom(zoomFactor);
-    setIsOrtho(true);
-    setLockView(false);
-    // fetchLoadingLevels();
-    // setCamRot(defaultCamRot);
-  };
-
+  const { camPos, camZoom, isOrtho, lockView, setCamPos } = controls;
   return (
     <>
-      <ControlPanel
-        {...{ handleReset, setLockView, lockView, isOrtho, setIsOrtho }}
-      />
-
       <Canvas
         className="bg-slate-300/50 !h-[75vh]"
         camera={{ position: camPos, fov: 55 }}
